@@ -2,7 +2,7 @@
 #include <cuda_runtime.h>
 
 #define BLOCK_SIZE 256
-#define GRID_SIZE 96
+#define GRID_SIZE 256
 
 __global__ void vector_add(const float* x, const float* y, float* out, const int N){
     int stride = gridDim.x * blockDim.x;
@@ -14,7 +14,7 @@ __global__ void vector_add(const float* x, const float* y, float* out, const int
 }
 
 int main(){
-    int N = 102400;
+    int N = 3072000;
     float *h_x = new float[N];
     float *h_y = new float[N];
     float *h_out = new float[N];

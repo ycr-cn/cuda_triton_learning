@@ -50,7 +50,7 @@ def add(x: torch.Tensor, y: torch.Tensor):
         line_names=['Triton', 'Torch'],
         styles=[('blue', '-'), ('green', '-')],
         ylabel='GB/s',
-        plot_name='vector-add-performance',
+        plot_name='triton-01-performance',
         args={},
     )
 )
@@ -65,5 +65,9 @@ def benchmark(size, provider):
     gbps = lambda ms: 3 * x.numel() * x.element_size() * 1e-9 / (ms * 1e-3)
     return gbps(ms), gbps(max_ms), gbps(min_ms)
     
+import os
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
-benchmark.run(show_plots=True, save_path=current_dir)
+parent_dir = os.path.dirname(current_dir)
+target_dir = os.path.join(parent_dir, "vec_add_performance")
+benchmark.run(show_plots=True, save_path=target_dir)

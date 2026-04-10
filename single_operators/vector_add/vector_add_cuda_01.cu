@@ -12,7 +12,7 @@ __global__ void vector_add(const float* x, const float* y, float* out, const int
 
 
 int main() {
-    int N = 102400;
+    int N = 3072000;
     float *h_x = new float[N];
     float *h_y = new float[N];
     float *h_out = new float[N];
